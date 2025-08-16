@@ -1,3 +1,6 @@
+## Sommaire
+1. [MySQL Database Design] (#MySQL-Database-Design)
+
 ## MySQL Database Design
 
 ### Table: patients
@@ -66,4 +69,30 @@
   "content": "Ceci est un contenu",
   "date": "2024-12-04"
 }
+```
+
+```mermaid
+erDiagram
+    UTILISATEUR ||--o{ RENDEZVOUS : "prend"
+    MEDECIN ||--o{ RENDEZVOUS : "donne"
+
+    UTILISATEUR {
+        int id PK
+        string nom
+        string email
+        string mot_de_passe
+    }
+
+    MEDECIN {
+        int id PK
+        string nom
+        string specialite
+    }
+
+    RENDEZVOUS {
+        int id PK
+        date date
+        int user_id FK
+        int medecin_id FK
+    }
 ```
