@@ -1,5 +1,5 @@
 ## Sommaire
-1. [MySQL Database Design] (#MySQL-Database-Design)
+1. [MySQL Database Design](#mysql-database-design)
 
 ## MySQL Database Design
 
