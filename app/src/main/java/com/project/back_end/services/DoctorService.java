@@ -1,11 +1,44 @@
 package com.project.back_end.services;
 
+import com.project.back_end.models.Doctor;
+import com.project.back_end.repo.AppointmentRepository;
+import com.project.back_end.repo.DoctorRepository;
+import org.springframework.stereotype.Service;
+
+import javax.print.Doc;
+import java.util.List;
+
+@Service
 public class DoctorService {
 
-// 1. **Add @Service Annotation**:
-//    - This class should be annotated with `@Service` to indicate that it is a service layer class.
-//    - The `@Service` annotation marks this class as a Spring-managed bean for business logic.
-//    - Instruction: Add `@Service` above the class declaration.
+    private final DoctorRepository doctorRepository;
+    private final AppointmentRepository appointmentRepository;
+
+    private final TokenService tokenService;
+
+    public DoctorService(final  DoctorRepository doctorRepository, final AppointmentRepository appointmentRepository, final TokenService tokenService){
+        this.doctorRepository = doctorRepository;
+        this.appointmentRepository = appointmentRepository;
+        this.tokenService = tokenService;
+    }
+
+
+    public Integer saveDoctor(final Doctor doctor){
+        if(this.doctorRepository.existsByEmail(doctor.getEmail())){
+            return -1;
+        } else {
+            try {
+                this.doctorRepository.save(doctor);
+            } catch (final Exception e) {
+                return 0;
+            }
+            return 1;
+        }
+    }
+
+    public List<String> getDoctorAvailability(final Long doctorId){
+
+    }
 
 // 2. **Constructor Injection for Dependencies**:
 //    - The `DoctorService` class depends on `DoctorRepository`, `AppointmentRepository`, and `TokenService`.

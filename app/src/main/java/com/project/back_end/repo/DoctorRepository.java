@@ -1,12 +1,18 @@
 package com.project.back_end.repo;
 
-public interface DoctorRepository {
-   // 1. Extend JpaRepository:
-//    - The repository extends JpaRepository<Doctor, Long>, which gives it basic CRUD functionality.
-//    - This allows the repository to perform operations like save, delete, update, and find without needing to implement these methods manually.
-//    - JpaRepository also includes features like pagination and sorting.
+import com.project.back_end.models.Doctor;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-// Example: public interface DoctorRepository extends JpaRepository<Doctor, Long> {}
+@Repository
+public interface DoctorRepository extends JpaRepository<Doctor, Long> {
+
+    Doctor findByEmail(final @NotNull @Email String email);
+
+    boolean existsByEmail(final @NotNull @Email String email);
 
 // 2. Custom Query Methods:
 

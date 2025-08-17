@@ -1,18 +1,30 @@
 package com.project.back_end.controllers;
 
+import com.project.back_end.services.DoctorService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
+
+
+@RestController
+@RequestMapping("/doctors")
 public class DoctorController {
 
-// 1. Set Up the Controller Class:
-//    - Annotate the class with `@RestController` to define it as a REST controller that serves JSON responses.
-//    - Use `@RequestMapping("${api.path}doctor")` to prefix all endpoints with a configurable API path followed by "doctor".
-//    - This class manages doctor-related functionalities such as registration, login, updates, and availability.
+    private DoctorService doctorService;
+
+    public DoctorController(final DoctorService doctorService){
+        this.doctorService = doctorService;
+    }
 
 
-// 2. Autowire Dependencies:
-//    - Inject `DoctorService` for handling the core logic related to doctors (e.g., CRUD operations, authentication).
-//    - Inject the shared `Service` class for general-purpose features like token validation and filtering.
+    @GetMapping("${doctorId}/availability/${date}")
+    public ResponseEntity<String> getDoctorAvailability(@PathVariable final Long doctorId, @PathVariable final LocalDateTime date, @PathVariable final String token){
 
+    }
 
 // 3. Define the `getDoctorAvailability` Method:
 //    - Handles HTTP GET requests to check a specific doctor’s availability on a given date.
