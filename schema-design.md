@@ -5,14 +5,21 @@
 
 ### Table: patients
 - id: INT, UNIQUE, Primary Key, NOT NULL, Auto Increment
-- first_name: VARCHAR, NOT NULL
-- last_name: VARCHAR, NOT NULL
+- first_name: VARCHAR(50), NOT NULL
+- last_name: VARCHAR(50), NOT NULL
+- email: VARCHAR(50), NOT NULL
+- hash: VARCHAR, NOT NULL
 - CONSTRAINT UNIQUE(first_name + last_name)
 
 ### Table : doctors
 - id: INT, UNIQUE, Primary Key, NOT NULL, Auto Increment
-- first_name: VARCHAR, NOT NULL
-- last_name: VARCHAR, NOT NULL
+- first_name: VARCHAR(50), NOT NULL
+- last_name: VARCHAR(50), NOT NULL
+- email: VARCHAR(50), NOT NULL
+- hash: VARCHAR, NOT NULL
+- specialization: VARCHAR NOT NULL
+- number: VARCHAR NOT NULL
+- CONSTRAINT UNIQUE(first_name + last_name)
 
 ### Table appointments
 - id: INT, UNIQUE, Primary Key, NOT NULL, Auto Increment
@@ -20,6 +27,7 @@
 - patient_id: INT, NOT NULL, Foreign Key -> patients(id)
 - appointment_date: DATETIME, NOT NULL
 - status: INT(0 = Scheduled, 1 = Completed, 2 = Cancelled)
+- CONSTRAINT UNIQUE(doctor_id + patient_id + appointment_date)
 
 ## MongoDB Collection Design
 
